@@ -7,6 +7,7 @@ import spring_boot_mvc.model.User;
 import spring_boot_mvc.repository.RoleRepository;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,7 +23,9 @@ public class RoleService {
         return role;
     }
 
-    public Iterable<Role> allRoles() {
-        return roleRepository.findAll();
+    public List<Role> allRoles() {
+        List<Role> rList = new ArrayList<>();
+        roleRepository.findAll().forEach(rList::add);
+        return rList;
     }
 }

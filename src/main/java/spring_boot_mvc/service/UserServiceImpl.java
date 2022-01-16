@@ -48,8 +48,8 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
-        return userRepository.findByName(name).orElse(null);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        return userRepository.findByEmail(email).orElse(null);
     }
 
     @Override
@@ -58,8 +58,8 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public Optional<User> getUserByName(String name){
-        return userRepository.findByName(name);
+    public Optional<User> getUserByEmail(String email){
+        return userRepository.findByEmail(email);
     }
 
 }

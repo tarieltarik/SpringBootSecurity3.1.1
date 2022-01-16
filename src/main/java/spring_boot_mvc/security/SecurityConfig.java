@@ -1,6 +1,7 @@
 package spring_boot_mvc.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -10,7 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import spring_boot_mvc.service.UserServiceImpl;
+
 
 import javax.sql.DataSource;
 
@@ -20,7 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     private final UserDetailsService userDetailsService;
 
     @Autowired
-    public SecurityConfig(UserDetailsService userDetailsService){
+    public SecurityConfig(@Qualifier("userServiceImpl") UserDetailsService userDetailsService){
         this.userDetailsService = userDetailsService;
     }
 
@@ -40,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .loginPage("/login")
                 .successHandler(new LoginSuccessHandler())
                 .loginProcessingUrl("/login")
-                .usernameParameter("j_username")
+                .usernameParameter("j_email")
                 .passwordParameter("j_password")
                 .permitAll();
 
