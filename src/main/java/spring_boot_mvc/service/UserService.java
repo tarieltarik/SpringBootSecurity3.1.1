@@ -10,6 +10,6 @@ public interface UserService extends UserDetailsService {
     void save(User user);
     void delete(User user);
     User getById(Long id);
-    Optional<User> getUserByName(String name);
+    Optional<User> getUserByEmail(String name);
     void deleteById (Long id);
 }

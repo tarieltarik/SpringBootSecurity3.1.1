@@ -23,14 +23,9 @@ public class UserController {
 
     @GetMapping("/user")
     public String showUser(Model model, Principal principal) {
-        User user = userService.getUserByName(principal.getName()).get();
+        User user = userService.getUserByEmail(principal.getName()).get();
         model.addAttribute("user", user);
         return "user";
-    }
-
-    @GetMapping("/hello")
-    public String printWelcome(ModelMap model) {
-        return "hello";
     }
 
     @GetMapping("/login")
